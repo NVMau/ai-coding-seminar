@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QC Tasks — Demo App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="dark">
+    <!-- ============================================================
+         LOGIN VIEW
+         ============================================================ -->
+    <section id="view-login" class="view view-active">
+      <div class="login-card">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <span class="brand-name">QC Tasks</span>
+        </div>
+        <h1 class="login-title">Đăng nhập</h1>
+        <p class="login-sub">Hệ thống quản lý test case nội bộ — demo</p>
+
+        <form id="login-form" autocomplete="off" novalidate>
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input
+              id="login-email"
+              data-testid="login-email"
+              type="email"
+              placeholder="you@company.com"
+              required
+            />
+          </label>
+
+          <label class="field">
+            <span class="field-label">Mật khẩu</span>
+            <input
+              id="login-password"
+              data-testid="login-password"
+              type="password"
+              placeholder="••••••••"
+              required
+            />
+          </label>
+
+          <p
+            id="login-error"
+            class="error-message"
+            data-testid="login-error"
+            hidden
+          ></p>
+
+          <button
+            type="submit"
+            id="login-submit"
+            data-testid="login-submit"
+            class="btn btn-primary btn-block"
+          >
+            Đăng nhập
+          </button>
+
+          <p class="hint">
+            <span class="hint-label">Demo</span>
+            <code>qc@example.com</code> / <code>qc123</code>
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DASHBOARD VIEW
+         ============================================================ -->
+    <section id="view-dashboard" class="view">
+      <header class="topbar">
+        <div class="topbar-left">
+          <span class="brand-dot"></span>
+          <span class="brand-name">QC Tasks</span>
+        </div>
+        <div class="topbar-right">
+          <span
+            id="welcome"
+            class="welcome"
+            data-testid="welcome"
+          ></span>
+          <button
+            id="logout"
+            data-testid="logout"
+            class="btn btn-ghost btn-sm"
+          >
+            Đăng xuất
+          </button>
+        </div>
+      </header>
+
+      <main class="page">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Test Cases</h1>
+            <p class="page-sub" data-testid="task-summary">
+              <span id="task-count">0</span> task
+            </p>
+          </div>
+          <button
+            id="new-task"
+            data-testid="new-task"
+            class="btn btn-primary"
+          >
+            + Tạo task
+          </button>
+        </div>
+
+        <div class="filter-bar">
+          <label class="checkbox">
+            <input
+              type="checkbox"
+              id="filter-high"
+              data-testid="filter-high"
+            />
+            <span>Chỉ hiện priority cao</span>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table class="task-table">
+            <thead>
+              <tr>
+                <th class="col-title">Title</th>
+                <th class="col-priority">Priority</th>
+                <th class="col-status">Status</th>
+                <th class="col-actions"></th>
+              </tr>
+            </thead>
+            <tbody
+              id="task-tbody"
+              data-testid="task-tbody"
+            ></tbody>
+          </table>
+          <div
+            id="empty-state"
+            class="empty-state"
+            data-testid="empty-state"
+            hidden
+          >
+            Chưa có task nào — bấm "Tạo task" để bắt đầu.
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <!-- ============================================================
+         NEW / EDIT TASK MODAL
+         ============================================================ -->
+    <div
+      id="task-modal"
+      class="modal"
+      data-testid="task-modal"
+      hidden
+    >
+      <div class="modal-backdrop" data-modal-close></div>
+      <div class="modal-card">
+        <header class="modal-head">
+          <h2 id="task-modal-title" class="modal-title">Tạo task</h2>
+          <button
+            class="modal-close"
+            data-modal-close
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        </header>
+
+        <form id="task-form" novalidate>
+          <input type="hidden" id="task-id" />
+
+          <label class="field">
+            <span class="field-label">Title</span>
+            <input
+              id="task-title"
+              data-testid="task-title"
+              type="text"
+              placeholder="VD: Login form không validate email"
+            />
+          </label>
+
+          <p
+            id="task-title-error"
+            class="error-message"
+            data-testid="task-title-error"
+            hidden
+          ></p>
+
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">Priority</span>
+              <select id="task-priority" data-testid="task-priority">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Status</span>
+              <select id="task-status" data-testid="task-status">
+                <option value="Open" selected>Open</option>
+                <option value="In progress">In progress</option>
+                <option value="Done">Done</option>
+              </select>
+            </label>
+          </div>
+
+          <footer class="modal-foot">
+            <button
+              type="button"
+              class="btn btn-ghost"
+              data-modal-close
+              data-testid="task-cancel"
+            >
+              Huỷ
+            </button>
+            <button
+              type="submit"
+              id="task-save"
+              data-testid="task-save"
+              class="btn btn-primary"
+            >
+              Lưu
+            </button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         DELETE CONFIRM DIALOG
+         ============================================================ -->
+    <div
+      id="confirm-modal"
+      class="modal"
+      data-testid="confirm-modal"
+      hidden
+    >
+      <div class="modal-backdrop"></div>
+      <div class="modal-card modal-card-sm">
+        <h2 class="modal-title">Xoá task?</h2>
+        <p
+          id="confirm-text"
+          class="modal-text"
+          data-testid="confirm-text"
+        ></p>
+        <footer class="modal-foot">
+          <button
+            id="confirm-cancel"
+            data-testid="confirm-cancel"
+            class="btn btn-ghost"
+          >
+            Huỷ
+          </button>
+          <button
+            id="confirm-delete"
+            data-testid="confirm-delete"
+            class="btn btn-danger"
+          >
+            Xoá
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         TOAST
+         ============================================================ -->
+    <div
+      id="toast"
+      class="toast"
+      data-testid="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

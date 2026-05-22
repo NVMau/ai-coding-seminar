@@ -17,7 +17,14 @@ pnpm install
 pnpm run dev
 ```
 
-Mở http://localhost:5173
+Mở http://localhost:5173 — web slide deck.
+
+App demo (mô phỏng phần Demo Flow trong seminar): <http://localhost:5173/demo-app/>
+
+```
+login:  qc@example.com / qc123
+reset:  /demo-app/#reset   (clear localStorage)
+```
 
 ## Phím tắt khi present
 
@@ -53,7 +60,12 @@ src/
     Intro.tsx          # 01 · Mở đầu
     Agent.tsx          # 02 · Agent là gì
     Skill.tsx          # 03 · Skill
-    MCP.tsx            # 04 · MCP + Playwright MCP
+    MCP.tsx            # 04 · MCP + Playwright + Backlog
     Demo.tsx           # 05 · Flow Skill + Playwright MCP
     Outro.tsx          # 06 · Kết
+public/
+  demo-app/            # mini QC Tasks app có 4 bug cài sẵn cho phần Demo
+docs/
+  demo-bugs.md         # danh sách 4 bug + cách agent bắt (cho speaker)
+  demo-skill.md        # mẫu skill agent follow trong demo
 ```
