@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SLIDES } from "../slides";
+import { AiPlatformLogo } from "./AiPlatformLogo";
 
 interface ShellProps {
   current: number;
@@ -33,15 +34,17 @@ export function Shell({ current, onChange, children }: ShellProps) {
       {/* Top nav */}
       <nav className="border-b border-white/5 bg-bg-panel/60 backdrop-blur sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6 flex-wrap">
-          <div className="flex flex-col font-mono leading-tight">
-            <span className="text-accent text-sm font-bold tracking-widest">
-              TEQ-SEMINAR{" "}
-              <span className="text-zinc-500">//</span> AI-QC
-            </span>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-widest">
-              slide {String(current + 1).padStart(2, "0")} /{" "}
-              {String(total).padStart(2, "0")}
-            </span>
+          <div className="flex items-center gap-3 leading-tight">
+            <AiPlatformLogo size="sm" />
+            <div className="flex flex-col font-mono">
+              <span className="text-accent text-[11px] font-bold tracking-widest">
+                AI-QC SEMINAR
+              </span>
+              <span className="text-[10px] text-zinc-500 uppercase tracking-widest">
+                slide {String(current + 1).padStart(2, "0")} /{" "}
+                {String(total).padStart(2, "0")}
+              </span>
+            </div>
           </div>
 
           <div className="flex-1 flex items-center justify-center gap-1 flex-wrap">

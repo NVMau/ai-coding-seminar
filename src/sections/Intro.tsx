@@ -8,13 +8,20 @@ import {
   Target,
 } from "lucide-react";
 import { Tag } from "../components/Card";
+import { AiPlatformLogo } from "../components/AiPlatformLogo";
 
 export function Intro() {
   return (
     <div className="flex flex-col items-center text-center pt-4">
-      <div className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-accent/30 text-accent bg-accent/5 mb-6 inline-flex items-center gap-2">
-        <TestTube2 className="w-3 h-3" />
-        AI QC SEMINAR DECK
+      <div className="mb-6 flex items-center gap-3 flex-wrap justify-center">
+        <div className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-accent/30 text-accent bg-accent/5 inline-flex items-center gap-2">
+          <TestTube2 className="w-3 h-3" />
+          AI QC SEMINAR DECK
+        </div>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+          presented by
+        </span>
+        <AiPlatformLogo size="md" />
       </div>
 
       <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-4">

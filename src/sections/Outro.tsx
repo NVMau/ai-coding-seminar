@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Tag } from "../components/Card";
+import { AiPlatformLogo } from "../components/AiPlatformLogo";
 
 export function Outro() {
   return (
@@ -95,13 +96,21 @@ export function Outro() {
           Cảm ơn mọi người đã lắng nghe!
         </h2>
         <p className="text-zinc-400 mb-5">Q&A — bao nhiêu câu hỏi cũng được.</p>
-        <div className="flex items-center justify-center gap-2 flex-wrap">
+        <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
           <Tag>#AIQCTeam</Tag>
           <Tag>#Agent</Tag>
           <Tag>#Skill</Tag>
           <Tag>#MCP</Tag>
           <Tag>#Playwright</Tag>
           <Tag>#ManualTest</Tag>
+        </div>
+
+        {/* Signature */}
+        <div className="inline-flex flex-col items-center gap-2 pt-6 border-t border-white/5">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+            brought to you by
+          </span>
+          <AiPlatformLogo size="md" />
         </div>
       </div>
     </div>
