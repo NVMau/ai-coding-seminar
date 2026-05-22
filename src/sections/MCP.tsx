@@ -7,6 +7,13 @@ import {
   Camera,
   Code2,
   AlertTriangle,
+  KanbanSquare,
+  ListTodo,
+  PlusSquare,
+  ArrowRightLeft,
+  MessageSquarePlus,
+  UserCheck,
+  GitPullRequest,
 } from "lucide-react";
 import { Card, SectionTitle, Tag } from "../components/Card";
 
@@ -64,7 +71,7 @@ export function MCP() {
       </div>
 
       {/* Playwright MCP */}
-      <div className="rounded-xl border border-accent/30 bg-accent/[0.03] p-6">
+      <div className="rounded-xl border border-accent/30 bg-accent/[0.03] p-6 mb-6">
         <div className="flex items-center gap-3 mb-3 flex-wrap">
           <div className="w-9 h-9 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
             <Globe className="w-4 h-4" />
@@ -93,8 +100,100 @@ export function MCP() {
           <Compare label="Dễ assert" detail="text · role · element" />
         </div>
       </div>
+
+      {/* Backlog MCP — ví dụ MCP thứ hai */}
+      <div className="rounded-xl border border-accent/30 bg-accent/[0.03] p-6">
+        <div className="flex items-center gap-3 mb-3 flex-wrap">
+          <div className="w-9 h-9 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+            <KanbanSquare className="w-4 h-4" />
+          </div>
+          <h3 className="text-xl font-semibold text-white">Backlog MCP</h3>
+          <Tag>TASK</Tag>
+          <Tag>JIRA · LINEAR · BACKLOG</Tag>
+          <Tag>WRITE</Tag>
+        </div>
+        <p className="text-sm text-zinc-400 mb-4 max-w-3xl">
+          MCP server cắm vào hệ quản lý task. Agent thay user thao tác{" "}
+          <span className="text-white">trực tiếp trên backlog</span> — tạo issue
+          từ báo cáo test, đổi trạng thái, comment, gán người, link PR — không cần
+          QC mở UI bấm tay.
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-5">
+          <ToolChip icon={ListTodo} label="list_issues" />
+          <ToolChip icon={PlusSquare} label="create_issue" />
+          <ToolChip icon={ArrowRightLeft} label="update_status" />
+          <ToolChip icon={MessageSquarePlus} label="add_comment" />
+          <ToolChip icon={UserCheck} label="assign" />
+          <ToolChip icon={GitPullRequest} label="link_pr" />
+        </div>
+
+        {/* Ví dụ: terminal-style demo */}
+        <div className="rounded-lg border border-white/5 bg-bg-base/60 overflow-hidden mb-4">
+          <div className="flex items-center gap-2 px-4 py-2 bg-bg-card/60 border-b border-white/5">
+            <div className="flex gap-1.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+            </div>
+            <div className="font-mono text-[11px] text-zinc-500 ml-2">
+              agent + backlog-mcp · ví dụ
+            </div>
+          </div>
+          <pre className="font-mono text-[12px] leading-relaxed p-4 text-zinc-300 whitespace-pre-wrap">
+            <Line accent>
+              {"> "}“Sau khi test xong, tạo bug cho từng case fail, gán Mai,
+              link vào PR #482.”
+            </Line>
+            <Line dim>[mcp:backlog] list_issues project=QC-25 status=open</Line>
+            <Line dim>[mcp:backlog] → 12 issue (filter để tránh trùng)</Line>
+            <Line>
+              [mcp:backlog] create_issue type=bug priority=P1 \
+              {"\n          "}title="Login mobile - không hiển thị error" \
+              {"\n          "}assignee=Mai due=2026-05-23
+            </Line>
+            <Line ok>✓ tạo BUG-148</Line>
+            <Line>
+              [mcp:backlog] create_issue →{" "}
+              <span className="text-white">BUG-149</span> "Reset password email
+              không về"
+            </Line>
+            <Line>
+              [mcp:backlog] add_comment BUG-148{" "}
+              <span className="text-zinc-500">"đính kèm log + screen + step
+              reproduce"</span>
+            </Line>
+            <Line>[mcp:backlog] link_pr BUG-148 ↔ PR-482</Line>
+            <Line accent>✓ 3 bug tạo + link xong, post Slack #qc-team</Line>
+          </pre>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
+          <Compare label="Đỡ mở UI" detail="thao tác bằng câu lệnh" />
+          <Compare label="Auto-link" detail="task ↔ PR ↔ commit" />
+          <Compare label="Bulk" detail="20 bug trong 1 lượt" />
+        </div>
+      </div>
     </div>
   );
+}
+
+function Line({
+  children,
+  accent,
+  dim,
+  ok,
+}: {
+  children: React.ReactNode;
+  accent?: boolean;
+  dim?: boolean;
+  ok?: boolean;
+}) {
+  let cls = "text-zinc-300";
+  if (accent) cls = "text-accent";
+  else if (dim) cls = "text-zinc-500";
+  else if (ok) cls = "text-emerald-400";
+  return <div className={cls}>{children}</div>;
 }
 
 function ArchBlock({
