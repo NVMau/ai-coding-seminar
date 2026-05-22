@@ -36,7 +36,7 @@ export function Shell({ current, onChange, children }: ShellProps) {
           <div className="flex flex-col font-mono leading-tight">
             <span className="text-accent text-sm font-bold tracking-widest">
               TEQ-SEMINAR{" "}
-              <span className="text-zinc-500">//</span> AI-CODING
+              <span className="text-zinc-500">//</span> AI-QC
             </span>
             <span className="text-[10px] text-zinc-500 uppercase tracking-widest">
               slide {String(current + 1).padStart(2, "0")} /{" "}
@@ -142,8 +142,8 @@ export function Shell({ current, onChange, children }: ShellProps) {
             </span>
           </div>
           <div>
-            ai_coding_seminar_2025{" "}
-            <span className="text-zinc-700">//</span> R&D
+            ai_qc_seminar_2025{" "}
+            <span className="text-zinc-700">//</span> QC_OPS
           </div>
         </div>
       </footer>

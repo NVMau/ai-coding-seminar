@@ -1,23 +1,32 @@
-import { Bot, Wrench, Plug, PlayCircle, Clock, Users } from "lucide-react";
+import {
+  Bot,
+  Wrench,
+  Plug,
+  PlayCircle,
+  Users,
+  TestTube2,
+  Target,
+} from "lucide-react";
 import { Tag } from "../components/Card";
 
 export function Intro() {
   return (
     <div className="flex flex-col items-center text-center pt-4">
-      <div className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-accent/30 text-accent bg-accent/5 mb-6">
-        AI CODING SEMINAR DECK
+      <div className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-accent/30 text-accent bg-accent/5 mb-6 inline-flex items-center gap-2">
+        <TestTube2 className="w-3 h-3" />
+        AI QC SEMINAR DECK
       </div>
 
       <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
         <span className="text-white">Ứng dụng AI</span>{" "}
-        <span className="text-accent text-shadow-glow">cho Team Coding</span>
+        <span className="text-accent text-shadow-glow">cho Team QC</span>
       </h2>
 
       <p className="max-w-2xl text-zinc-400 text-lg leading-relaxed mb-6">
-        Hành trình 15 phút qua{" "}
+        Hành trình qua{" "}
         <span className="text-white font-semibold">Agent</span>,{" "}
         <span className="text-white font-semibold">Skill</span>,{" "}
-        <span className="text-white font-semibold">MCP</span> — và một flow demo
+        <span className="text-white font-semibold">MCP</span> — và flow demo
         dùng Skill + Playwright MCP để{" "}
         <span className="text-accent">test manual</span>.
       </p>
@@ -36,8 +45,8 @@ export function Intro() {
 
       {/* Quick info row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-3xl">
-        <InfoBlock icon={Clock} label="Thời lượng" value="~15 phút" />
-        <InfoBlock icon={Users} label="Audience" value="Dev team" />
+        <InfoBlock icon={Users} label="Audience" value="Team QC" />
+        <InfoBlock icon={Target} label="Tập trung" value="Manual testing" />
         <InfoBlock icon={PlayCircle} label="Có demo" value="Live Playwright MCP" />
       </div>
 
@@ -61,7 +70,7 @@ function InfoBlock({
   label,
   value,
 }: {
-  icon: typeof Clock;
+  icon: typeof Users;
   label: string;
   value: string;
 }) {
@@ -83,7 +92,7 @@ function PreviewCard({
   title,
   subtitle,
 }: {
-  icon: typeof Clock;
+  icon: typeof Users;
   title: string;
   subtitle: string;
 }) {

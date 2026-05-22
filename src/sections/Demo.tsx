@@ -47,9 +47,9 @@ export function Demo() {
   return (
     <div>
       <SectionTitle
-        eyebrow="// 04 phút · live demo"
+        eyebrow="// live demo"
         title="Flow: Skill + Playwright MCP cho test manual"
-        desc="Kịch bản: Login → Tạo record → Verify → Xoá → Verify mất. QA thủ công 15–20 phút → agent vài phút."
+        desc="Kịch bản: Login → Tạo record → Verify → Xoá → Verify mất. QA thủ công mất chục phút → agent vài phút."
       />
 
       {/* Flow steps */}
@@ -121,7 +121,7 @@ export function Demo() {
             Vì sao đáng dùng
           </div>
           <Bullet icon={Zap} title="Tốc độ">
-            Vài phút thay vì 15–20 phút QA bấm tay.
+            Vài phút thay vì QA ngồi bấm tay cả buổi.
           </Bullet>
           <Bullet icon={RefreshCw} title="UI đổi → sửa skill">
             Không phải viết lại script test cứng.

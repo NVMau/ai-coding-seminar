@@ -13,9 +13,9 @@ export function Skill() {
   return (
     <div>
       <SectionTitle
-        eyebrow='// 03 phút · "Playbook" cho Agent'
+        eyebrow='// "Playbook" cho Agent'
         title="Skill — đóng gói kinh nghiệm team thành thứ Agent đọc được"
-        desc="Mỗi task lặp lại = một skill có sẵn. Tái sử dụng, chuẩn hoá theo convention team."
+        desc="Mỗi task QC lặp lại = một skill có sẵn. Tái sử dụng, chuẩn hoá theo convention team."
       />
 
       {/* Problem -> Solution */}

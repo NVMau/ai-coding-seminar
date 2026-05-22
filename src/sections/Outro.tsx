@@ -6,7 +6,17 @@ import {
   XCircle,
   Rocket,
   MessageCircle,
+  Repeat2,
+  UserPlus,
+  ListChecks,
+  ShieldAlert,
+  Lock,
+  Crosshair,
+  PenLine,
+  Download,
+  Share2,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Tag } from "../components/Card";
 
 export function Outro() {
@@ -39,9 +49,9 @@ export function Outro() {
             <h3 className="text-white font-semibold">Khi nên dùng</h3>
           </div>
           <ul className="space-y-2 text-sm text-zinc-300">
-            <Li>Test manual lặp đi lặp lại nhiều lần</Li>
-            <Li>Onboard member mới (skill = tài liệu sống)</Li>
-            <Li>Việc tedious cần đúng convention team</Li>
+            <Li icon={Repeat2}>Test manual lặp đi lặp lại nhiều lần</Li>
+            <Li icon={UserPlus}>Onboard QC mới (skill = tài liệu sống)</Li>
+            <Li icon={ListChecks}>Việc tedious cần đúng convention team</Li>
           </ul>
         </div>
         <div className="rounded-xl border border-white/10 bg-bg-card/60 p-5">
@@ -50,9 +60,9 @@ export function Outro() {
             <h3 className="text-white font-semibold">Khi KHÔNG thay thế</h3>
           </div>
           <ul className="space-y-2 text-sm text-zinc-400">
-            <Li>Logic critical cần review kỹ</Li>
-            <Li>Security · Payment · Auth</Li>
-            <Li>Yêu cầu độ chính xác tuyệt đối</Li>
+            <Li icon={ShieldAlert} muted>Logic critical cần review kỹ</Li>
+            <Li icon={Lock} muted>Security · Payment · Auth</Li>
+            <Li icon={Crosshair} muted>Yêu cầu độ chính xác tuyệt đối</Li>
           </ul>
         </div>
       </div>
@@ -64,9 +74,15 @@ export function Outro() {
           <h3 className="text-white font-semibold text-lg">Call to action</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-zinc-300">
-          <Action n="01">Viết 1 skill cho task hay lặp nhất tuần này.</Action>
-          <Action n="02">Cài thử Playwright MCP cho project đang làm.</Action>
-          <Action n="03">Share skill hữu ích cho team dùng chung.</Action>
+          <Action n="01" icon={PenLine}>
+            Viết 1 skill cho task QC hay lặp nhất tuần này.
+          </Action>
+          <Action n="02" icon={Download}>
+            Cài thử Playwright MCP cho project đang test.
+          </Action>
+          <Action n="03" icon={Share2}>
+            Share skill hữu ích cho team dùng chung.
+          </Action>
         </div>
       </div>
 
@@ -80,11 +96,12 @@ export function Outro() {
         </h2>
         <p className="text-zinc-400 mb-5">Q&A — bao nhiêu câu hỏi cũng được.</p>
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <Tag>#AICodingTeam</Tag>
+          <Tag>#AIQCTeam</Tag>
           <Tag>#Agent</Tag>
           <Tag>#Skill</Tag>
           <Tag>#MCP</Tag>
           <Tag>#Playwright</Tag>
+          <Tag>#ManualTest</Tag>
         </div>
       </div>
     </div>
@@ -109,10 +126,22 @@ function RecapCard({
   );
 }
 
-function Li({ children }: { children: React.ReactNode }) {
+function Li({
+  icon: Icon,
+  muted = false,
+  children,
+}: {
+  icon: LucideIcon;
+  muted?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <li className="flex items-start gap-2">
-      <span className="font-mono text-[10px] text-accent mt-1">▸</span>
+      <Icon
+        className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${
+          muted ? "text-zinc-500" : "text-accent"
+        }`}
+      />
       <span>{children}</span>
     </li>
   );
@@ -120,15 +149,22 @@ function Li({ children }: { children: React.ReactNode }) {
 
 function Action({
   n,
+  icon: Icon,
   children,
 }: {
   n: string;
+  icon: LucideIcon;
   children: React.ReactNode;
 }) {
   return (
     <div className="rounded-lg border border-white/5 bg-bg-base/40 p-3 flex items-start gap-3">
-      <span className="font-mono text-[10px] text-accent">{n}</span>
-      <span>{children}</span>
+      <div className="shrink-0 w-7 h-7 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+        <Icon className="w-3.5 h-3.5" />
+      </div>
+      <div>
+        <div className="font-mono text-[10px] text-accent mb-0.5">{n}</div>
+        <span>{children}</span>
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ export function MCP() {
   return (
     <div>
       <SectionTitle
-        eyebrow="// 03 phút · Model Context Protocol"
+        eyebrow="// Model Context Protocol"
         title="MCP — USB-C cho AI Agent"
         desc="Chuẩn mở để Agent kết nối tới các MCP server (tool · resource · prompt) — cắm vào là dùng."
       />

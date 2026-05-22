@@ -11,7 +11,7 @@ export function Agent() {
   return (
     <div>
       <SectionTitle
-        eyebrow="// 03 phút · nói lướt"
+        eyebrow="// nền tảng — nói lướt"
         title="Agent = bộ não + tay chân + trí nhớ ngắn hạn"
         desc="Hiểu sơ bộ Agent hoạt động ra sao, đủ để theo các phần sau (Skill, MCP)."
       />

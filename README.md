@@ -1,6 +1,6 @@
-# AI Coding Seminar
+# AI QC Seminar
 
-Web slide deck cho buổi seminar 15 phút về **Ứng dụng AI cho Team Coding** — Agent · Skill · MCP · Playwright MCP demo.
+Web slide deck cho buổi seminar **Ứng dụng AI cho Team QC** — Agent · Skill · MCP · Playwright MCP demo.
 
 Style lấy cảm hứng từ [openclaw-seminar-one](https://openclaw-seminar-one.vercel.app/).
 
