@@ -1,0 +1,66 @@
+import {
+  Sparkles,
+  Bot,
+  Wrench,
+  Plug,
+  PlayCircle,
+  Flag,
+} from "lucide-react";
+import type { SlideMeta } from "./types";
+
+export const SLIDES: SlideMeta[] = [
+  {
+    id: "intro",
+    index: 1,
+    label: "Mở đầu",
+    icon: Sparkles,
+    section: "SECTION 01",
+    title: "Mở đầu",
+    nextLabel: "Agent",
+  },
+  {
+    id: "agent",
+    index: 2,
+    label: "Agent",
+    icon: Bot,
+    section: "SECTION 02",
+    title: "Agent là gì?",
+    nextLabel: "Skill",
+  },
+  {
+    id: "skill",
+    index: 3,
+    label: "Skill",
+    icon: Wrench,
+    section: "SECTION 03",
+    title: "Skill",
+    nextLabel: "MCP",
+  },
+  {
+    id: "mcp",
+    index: 4,
+    label: "MCP",
+    icon: Plug,
+    section: "SECTION 04",
+    title: "MCP",
+    nextLabel: "Demo Flow",
+  },
+  {
+    id: "demo",
+    index: 5,
+    label: "Demo Flow",
+    icon: PlayCircle,
+    section: "SECTION 05",
+    title: "Demo Flow",
+    nextLabel: "Kết",
+  },
+  {
+    id: "outro",
+    index: 6,
+    label: "Kết",
+    icon: Flag,
+    section: "SECTION 06",
+    title: "Kết luận",
+    nextLabel: "Finish",
+  },
+];
