@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# AI Coding Seminar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Web slide deck cho buổi seminar 15 phút về **Ứng dụng AI cho Team Coding** — Agent · Skill · MCP · Playwright MCP demo.
 
-Currently, two official plugins are available:
+Style lấy cảm hứng từ [openclaw-seminar-one](https://openclaw-seminar-one.vercel.app/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech
 
-## React Compiler
+- Vite + React + TypeScript
+- Tailwind CSS
+- lucide-react icons
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Phát triển
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Mở http://localhost:5173
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Phím tắt khi present
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Phím | Hành động |
+| --- | --- |
+| `→` / `Space` / `PageDown` | Slide tiếp |
+| `←` / `PageUp` | Slide trước |
+| `1` – `6` | Nhảy thẳng tới slide |
+
+## Build production
+
+```bash
+pnpm run build
+pnpm run preview
+```
+
+## Deploy lên Vercel
+
+1. Push repo này lên GitHub của bạn.
+2. Vào [vercel.com/new](https://vercel.com/new), import repo.
+3. Vercel tự nhận diện Vite — bấm **Deploy**. Xong.
+
+## Cấu trúc
+
+```
+src/
+  App.tsx              # state slide + key bindings
+  slides.tsx           # meta của 6 slide
+  components/
+    Shell.tsx          # top nav + footer + nav arrows
+    Card.tsx           # các primitive UI
+  sections/
+    Intro.tsx          # 01 · Mở đầu
+    Agent.tsx          # 02 · Agent là gì
+    Skill.tsx          # 03 · Skill
+    MCP.tsx            # 04 · MCP + Playwright MCP
+    Demo.tsx           # 05 · Flow Skill + Playwright MCP
+    Outro.tsx          # 06 · Kết
 ```
