@@ -12,10 +12,10 @@ export const SLIDES: SlideMeta[] = [
   {
     id: "intro",
     index: 1,
-    label: "Mở đầu",
+    label: "Intro",
     icon: Sparkles,
     section: "SECTION 01",
-    title: "Mở đầu",
+    title: "Intro",
     nextLabel: "Agent",
   },
   {
@@ -24,7 +24,7 @@ export const SLIDES: SlideMeta[] = [
     label: "Agent",
     icon: Bot,
     section: "SECTION 02",
-    title: "Agent là gì?",
+    title: "What is an Agent?",
     nextLabel: "Skill",
   },
   {
@@ -52,15 +52,15 @@ export const SLIDES: SlideMeta[] = [
     icon: PlayCircle,
     section: "SECTION 05",
     title: "Demo Flow",
-    nextLabel: "Kết",
+    nextLabel: "Wrap-up",
   },
   {
     id: "outro",
     index: 6,
-    label: "Kết",
+    label: "Wrap-up",
     icon: Flag,
     section: "SECTION 06",
-    title: "Kết luận",
+    title: "Wrap-up",
     nextLabel: "Finish",
   },
 ];

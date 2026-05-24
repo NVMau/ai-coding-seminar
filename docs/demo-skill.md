@@ -1,31 +1,32 @@
 # Skill: `qc-tasks-smoke-test`
 
-Skill (playbook) mẫu agent sẽ follow trong phần Demo của seminar.  
-Mục tiêu: chạy smoke test trên app `/demo-app/`, bắt mọi bug vi phạm spec.
+A sample skill (playbook) the agent follows during the seminar's demo section.
+Goal: run a smoke test against `/demo-app/` and surface anything that violates the spec.
 
-> Đây là file slide ví dụ — trên thực tế skill thường viết bằng Markdown đặt trong
-> `.agents/skills/qc-tasks-smoke-test.md`, agent đọc khi nhận được task tương ứng.
+> This file is shown on the slide for illustration. In a real project, the skill
+> usually lives in `.agents/skills/qc-tasks-smoke-test.md` and the agent loads it
+> when it receives a matching task.
 
 ---
 
-## Khi nào dùng skill này
+## When to use this skill
 
-Mỗi khi build mới của app `qc-tasks` được deploy lên staging, chạy skill này để
-verify regression cho các flow cơ bản: **Login · Create · Cancel-delete · Filter**.
+Every time a new build of the `qc-tasks` app is deployed to staging, run this
+skill to verify regressions on the core flows: **Login · Create · Cancel-delete · Filter**.
 
-## Tools bắt buộc
+## Required tools
 
-- `playwright-mcp` — để điều khiển browser.
-- (Optional) `backlog-mcp` — để tạo issue cho bug tìm thấy.
+- `playwright-mcp` — to drive the browser.
+- (Optional) `backlog-mcp` — to file issues for the bugs found.
 
-## Spec (oracle để assert)
+## Spec (oracle for assertions)
 
-| Hành động | Expected |
+| Action | Expected |
 | --- | --- |
-| Login đúng `qc@example.com` / `qc123` | Vào dashboard, header chứa `"QC User"` |
-| Tạo task hợp lệ | Toast == `"Task created"` |
-| Modal xoá → bấm **Huỷ** | Số row không đổi |
-| Tick "Chỉ hiện priority cao" | Mọi row có priority badge == `"High"` |
+| Sign in with `qc@example.com` / `qc123` | Lands on the dashboard, header contains `"QC User"` |
+| Create a valid task | Toast == `"Task created"` |
+| Open delete modal → click **Cancel** | Row count is unchanged |
+| Tick "Only show high priority" | Every visible row has priority badge == `"High"` |
 
 ## Steps
 
@@ -44,7 +45,7 @@ verify regression cho các flow cơ bản: **Login · Create · Cancel-delete ·
     - assert.text_contains:
         selector: "[data-testid='welcome']"
         expected: "QC User"
-        on_fail:   report_bug "Welcome greeting không chứa display name"
+        on_fail:   report_bug "Welcome greeting does not contain the display name"
 
 - name: Create task
   steps:
@@ -55,7 +56,7 @@ verify regression cho các flow cơ bản: **Login · Create · Cancel-delete ·
     - assert.text_equals:
         selector: "[data-testid='toast']"
         expected: "Task created"
-        on_fail:   report_bug "Toast sai sau khi create task"
+        on_fail:   report_bug "Wrong toast wording after creating a task"
 
 - name: Cancel delete should NOT delete
   steps:
@@ -68,7 +69,7 @@ verify regression cho các flow cơ bản: **Login · Create · Cancel-delete ·
     - assert.equals:
         a: N
         b: M
-        on_fail:   report_bug "Cancel trên confirm dialog vẫn xoá task"
+        on_fail:   report_bug "Cancel on the confirm dialog still deletes the task"
 
 - name: High-priority filter
   steps:
@@ -78,11 +79,11 @@ verify regression cho các flow cơ bản: **Login · Create · Cancel-delete ·
     - assert.all_equal:
         haystack: badges.text
         expected: "High"
-        on_fail:   report_bug "Filter 'Only High' không filter"
+        on_fail:   report_bug "'Only High' filter does not filter"
 
 - name: Report
   steps:
-    - print: "✓ skill xong — {{bugs_found}} bug phát hiện"
+    - print: "✓ skill done — {{bugs_found}} bugs found"
     - if: bugs_found > 0
       then:
         - call: backlog-mcp.create_issue
@@ -96,21 +97,21 @@ verify regression cho các flow cơ bản: **Login · Create · Cancel-delete ·
             assignee: "QC User"
 ```
 
-## Output mong đợi (sau khi run trên build có 4 bug)
+## Expected output (when run against a build containing the 4 bugs)
 
 ```text
 [skill] qc-tasks-smoke-test → run
-✗ Welcome greeting không chứa display name      (BUG #1)
-✗ Toast sai sau khi create task                 (BUG #2)
-✗ Cancel trên confirm dialog vẫn xoá task       (BUG #3)
-✗ Filter "Only High" không filter               (BUG #4)
-✓ skill xong — 4 bug phát hiện
+✗ Welcome greeting does not contain the display name      (BUG #1)
+✗ Wrong toast wording after creating a task               (BUG #2)
+✗ Cancel on the confirm dialog still deletes the task     (BUG #3)
+✗ 'Only High' filter does not filter                      (BUG #4)
+✓ skill done — 4 bugs found
 [backlog-mcp] create_issue → BUG-148, BUG-149, BUG-150, BUG-151
 ```
 
-## Tại sao skill đáng dùng
+## Why this skill is worth keeping
 
-- **Viết 1 lần — chạy mọi build** (smoke test nhanh).
-- **Spec viết bằng tiếng người** — QC mới đọc cũng hiểu.
-- **Agent đọc skill → tự lặp lại đều** — không phụ thuộc mood của QA.
-- **Liên thông MCP**: Playwright (đọc UI) + Backlog (push bug) → khép vòng tự động.
+- **Write once — run on every build** (fast smoke test).
+- **Spec written in plain English** — new QC engineers can read and edit it.
+- **The agent reads the skill and repeats reliably** — it doesn't depend on whoever is on shift.
+- **Connects two MCPs**: Playwright (reads the UI) + Backlog (files the bug) — closing the loop automatically.

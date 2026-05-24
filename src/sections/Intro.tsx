@@ -25,17 +25,17 @@ export function Intro() {
       </div>
 
       <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
-        <span className="text-white">Ứng dụng AI</span>{" "}
-        <span className="text-accent text-shadow-glow">cho Team QC</span>
+        <span className="text-white">Applying AI</span>{" "}
+        <span className="text-accent text-shadow-glow">for the QC Team</span>
       </h2>
 
       <p className="max-w-2xl text-zinc-400 text-lg leading-relaxed mb-6">
-        Hành trình qua{" "}
+        A walkthrough of{" "}
         <span className="text-white font-semibold">Agent</span>,{" "}
         <span className="text-white font-semibold">Skill</span>,{" "}
-        <span className="text-white font-semibold">MCP</span> — và flow demo
-        dùng Skill + Playwright MCP để{" "}
-        <span className="text-accent">test manual</span>.
+        <span className="text-white font-semibold">MCP</span> — plus a live demo
+        using Skill + Playwright MCP for{" "}
+        <span className="text-accent">manual testing</span>.
       </p>
 
       <div className="flex items-center gap-2 flex-wrap justify-center mb-10">
@@ -52,20 +52,20 @@ export function Intro() {
 
       {/* Quick info row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-3xl">
-        <InfoBlock icon={Users} label="Audience" value="Team QC" />
-        <InfoBlock icon={Target} label="Tập trung" value="Manual testing" />
-        <InfoBlock icon={PlayCircle} label="Có demo" value="Live Playwright MCP" />
+        <InfoBlock icon={Users} label="Audience" value="QC Team" />
+        <InfoBlock icon={Target} label="Focus" value="Manual testing" />
+        <InfoBlock icon={PlayCircle} label="Live demo" value="Playwright MCP" />
       </div>
 
       {/* Section preview row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-4xl mt-10">
         <PreviewCard icon={Bot} title="Agent" subtitle="LLM + Tool + Context" />
-        <PreviewCard icon={Wrench} title="Skill" subtitle="Playbook cho agent" />
-        <PreviewCard icon={Plug} title="MCP" subtitle="USB-C cho AI agent" />
+        <PreviewCard icon={Wrench} title="Skill" subtitle="Playbook for the agent" />
+        <PreviewCard icon={Plug} title="MCP" subtitle="USB-C for AI agents" />
         <PreviewCard
           icon={PlayCircle}
           title="Demo Flow"
-          subtitle="Manual test bằng AI"
+          subtitle="Manual testing with AI"
         />
       </div>
     </div>

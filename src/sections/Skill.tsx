@@ -13,23 +13,23 @@ export function Skill() {
   return (
     <div>
       <SectionTitle
-        eyebrow='// "Playbook" cho Agent'
-        title="Skill — đóng gói kinh nghiệm team thành thứ Agent đọc được"
-        desc="Mỗi task QC lặp lại = một skill có sẵn. Tái sử dụng, chuẩn hoá theo convention team."
+        eyebrow='// a "Playbook" for the Agent'
+        title="Skill — packaging team know-how into something the Agent can read"
+        desc="Every repeated QC task = one ready-made skill. Reusable, standardised to the team's conventions."
       />
 
       {/* Problem -> Solution */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         <Card
           icon={AlertTriangle}
-          title="Vấn đề"
-          description="Task lặp lại (login, setup repo, viết test theo convention…) — mỗi lần agent phải mò lại từ đầu. Prompt dài cũng không phải giải pháp tốt."
+          title="The problem"
+          description="Repeated tasks (login, repo setup, writing tests to convention…) — every time, the agent has to figure it out from scratch. Long prompts aren't a great fix either."
           badge="PAIN"
         />
         <Card
           icon={Sparkles}
-          title="Khái niệm Skill"
-          description="Một bộ instruction / checklist có sẵn, agent load ra dùng khi gặp đúng tình huống. Giống 'SOP' của team — nhưng viết cho agent đọc."
+          title="What is a Skill?"
+          description="A pre-written set of instructions / checklist the agent loads when it hits the right situation. Think of it as the team's SOP — but written for an agent to read."
           badge="SOLUTION"
           accentBorder
         />
@@ -37,9 +37,9 @@ export function Skill() {
 
       {/* Benefits */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
-        <Benefit text="Tái sử dụng giữa nhiều session" />
-        <Benefit text="Chuẩn hoá theo convention team" />
-        <Benefit text="Giảm lỗi · giảm token · tăng tốc" />
+        <Benefit text="Reusable across sessions" />
+        <Benefit text="Standardised to team conventions" />
+        <Benefit text="Fewer mistakes · fewer tokens · faster" />
       </div>
 
       {/* Demo skills */}
@@ -47,27 +47,27 @@ export function Skill() {
         <SkillDemo
           icon={Globe}
           name="playwright-login"
-          purpose="Tự động login app, verify đã vào dashboard."
-          trigger='"khi cần đăng nhập app X"'
+          purpose="Automatically log into the app and verify the dashboard is up."
+          trigger='"when login to app X is needed"'
           steps={[
-            "Mở URL login",
-            "Fill username / password (từ secret)",
+            "Open the login URL",
+            "Fill username / password (from secret)",
             "Click submit",
             "Verify URL = /dashboard",
-            "Save cookies cho session sau",
+            "Save cookies for later sessions",
           ]}
         />
         <SkillDemo
           icon={TestTube2}
           name="write-test-case"
-          purpose="Viết test case đúng convention team."
-          trigger='"khi user yêu cầu viết test"'
+          purpose="Write a test case following the team's conventions."
+          trigger='"when the user asks for a test"'
           steps={[
-            "Đặt file theo cấu trúc team (*.test.ts)",
+            "Place the file per team layout (*.test.ts)",
             "Naming: describe/it · AAA pattern",
-            "Mock theo helper sẵn có",
-            "Chạy lint + test trước khi commit",
-            "Đảm bảo coverage không giảm",
+            "Mock through existing helpers",
+            "Run lint + tests before committing",
+            "Ensure coverage doesn't drop",
           ]}
         />
       </div>
@@ -75,8 +75,8 @@ export function Skill() {
       <div className="mt-6 rounded-lg border border-accent/20 bg-accent/5 p-4 flex items-center gap-3">
         <FileCode2 className="w-5 h-5 text-accent shrink-0" />
         <div className="text-sm text-zinc-300">
-          <span className="font-semibold text-white">Key takeaway:</span> Skill
-          biến <em>kinh nghiệm team</em> thành thứ agent dùng được.
+          <span className="font-semibold text-white">Key takeaway:</span> A Skill
+          turns <em>team know-how</em> into something the agent can actually use.
         </div>
       </div>
     </div>

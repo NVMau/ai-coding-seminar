@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,8 +16,8 @@
           <span class="brand-dot"></span>
           <span class="brand-name">QC Tasks</span>
         </div>
-        <h1 class="login-title">Đăng nhập</h1>
-        <p class="login-sub">Hệ thống quản lý test case nội bộ — demo</p>
+        <h1 class="login-title">Sign in</h1>
+        <p class="login-sub">Internal test-case management system — demo</p>
 
         <form id="login-form" autocomplete="off" novalidate>
           <label class="field">
@@ -32,7 +32,7 @@
           </label>
 
           <label class="field">
-            <span class="field-label">Mật khẩu</span>
+            <span class="field-label">Password</span>
             <input
               id="login-password"
               data-testid="login-password"
@@ -55,7 +55,7 @@
             data-testid="login-submit"
             class="btn btn-primary btn-block"
           >
-            Đăng nhập
+            Sign in
           </button>
 
           <p class="hint">
@@ -86,7 +86,7 @@
             data-testid="logout"
             class="btn btn-ghost btn-sm"
           >
-            Đăng xuất
+            Sign out
           </button>
         </div>
       </header>
@@ -96,7 +96,7 @@
           <div>
             <h1 class="page-title">Test Cases</h1>
             <p class="page-sub" data-testid="task-summary">
-              <span id="task-count">0</span> task
+              <span id="task-count">0</span> tasks
             </p>
           </div>
           <button
@@ -104,7 +104,7 @@
             data-testid="new-task"
             class="btn btn-primary"
           >
-            + Tạo task
+            + New task
           </button>
         </div>
 
@@ -115,7 +115,7 @@
               id="filter-high"
               data-testid="filter-high"
             />
-            <span>Chỉ hiện priority cao</span>
+            <span>Only show high priority</span>
           </label>
         </div>
 
@@ -140,7 +140,7 @@
             data-testid="empty-state"
             hidden
           >
-            Chưa có task nào — bấm "Tạo task" để bắt đầu.
+            No tasks yet — click "New task" to get started.
           </div>
         </div>
       </main>
@@ -158,7 +158,7 @@
       <div class="modal-backdrop" data-modal-close></div>
       <div class="modal-card">
         <header class="modal-head">
-          <h2 id="task-modal-title" class="modal-title">Tạo task</h2>
+          <h2 id="task-modal-title" class="modal-title">New task</h2>
           <button
             class="modal-close"
             data-modal-close
@@ -177,7 +177,7 @@
               id="task-title"
               data-testid="task-title"
               type="text"
-              placeholder="VD: Login form không validate email"
+              placeholder="e.g. Login form does not validate email"
             />
           </label>
 
@@ -215,7 +215,7 @@
               data-modal-close
               data-testid="task-cancel"
             >
-              Huỷ
+              Cancel
             </button>
             <button
               type="submit"
@@ -223,7 +223,7 @@
               data-testid="task-save"
               class="btn btn-primary"
             >
-              Lưu
+              Save
             </button>
           </footer>
         </form>
@@ -241,7 +241,7 @@
     >
       <div class="modal-backdrop"></div>
       <div class="modal-card modal-card-sm">
-        <h2 class="modal-title">Xoá task?</h2>
+        <h2 class="modal-title">Delete task?</h2>
         <p
           id="confirm-text"
           class="modal-text"
@@ -253,14 +253,14 @@
             data-testid="confirm-cancel"
             class="btn btn-ghost"
           >
-            Huỷ
+            Cancel
           </button>
           <button
             id="confirm-delete"
             data-testid="confirm-delete"
             class="btn btn-danger"
           >
-            Xoá
+            Delete
           </button>
         </footer>
       </div>

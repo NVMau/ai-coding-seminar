@@ -22,21 +22,21 @@ export function MCP() {
     <div>
       <SectionTitle
         eyebrow="// Model Context Protocol"
-        title="MCP — USB-C cho AI Agent"
-        desc="Chuẩn mở để Agent kết nối tới các MCP server (tool · resource · prompt) — cắm vào là dùng."
+        title="MCP — USB-C for AI Agents"
+        desc="An open standard for agents to plug into MCP servers (tool · resource · prompt) — connect and go."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         <Card
           icon={AlertTriangle}
-          title="Vấn đề"
-          description="Mỗi agent / IDE lại có cách tích hợp tool riêng — fragment, khó tái sử dụng. Muốn agent nói chuyện với Jira, GitHub, DB, browser… cần chuẩn chung."
+          title="The problem"
+          description="Every agent / IDE integrates tools its own way — fragmented and hard to reuse. To let agents talk to Jira, GitHub, DBs, browsers… we need a shared standard."
           badge="PAIN"
         />
         <Card
           icon={Plug}
-          title="MCP là gì?"
-          description="Model Context Protocol — chuẩn mở do Anthropic đề xuất. Agent kết nối tới các MCP server cung cấp tool, resource, prompt. Ẩn dụ: USB-C cho AI agent."
+          title="What is MCP?"
+          description="Model Context Protocol — an open standard proposed by Anthropic. Agents connect to MCP servers that expose tools, resources and prompts. Think of it as USB-C for AI agents."
           badge="STANDARD"
           accentBorder
         />
@@ -46,7 +46,7 @@ export function MCP() {
       <div className="rounded-xl border border-white/5 bg-bg-card/60 p-6 mb-6">
         <div className="font-mono text-[10px] uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
           <Workflow className="w-3.5 h-3.5" />
-          Kiến trúc MCP
+          MCP Architecture
         </div>
         <div className="flex items-stretch justify-between gap-3 flex-wrap">
           <ArchBlock
@@ -64,7 +64,7 @@ export function MCP() {
           <ArchArrow label="exec" />
           <ArchBlock
             icon={Globe}
-            title="Hệ thống thật"
+            title="Real systems"
             sub="Browser · DB · API…"
           />
         </div>
@@ -82,9 +82,9 @@ export function MCP() {
           <Tag>FAST</Tag>
         </div>
         <p className="text-sm text-zinc-400 mb-4 max-w-3xl">
-          MCP server expose các tool điều khiển trình duyệt. Agent dùng browser
-          như người thật — nhưng có structure (accessibility tree) thay vì chỉ
-          screenshot.
+          An MCP server that exposes browser-control tools. The agent drives the
+          browser like a real user — but reads structure (accessibility tree)
+          instead of relying on screenshots alone.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
@@ -95,13 +95,13 @@ export function MCP() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-          <Compare label="Nhanh hơn" detail="vs screenshot-only" />
+          <Compare label="Faster" detail="vs screenshot-only" />
           <Compare label="Deterministic" detail="DOM > pixel" />
-          <Compare label="Dễ assert" detail="text · role · element" />
+          <Compare label="Easy to assert" detail="text · role · element" />
         </div>
       </div>
 
-      {/* Backlog MCP — ví dụ MCP thứ hai */}
+      {/* Backlog MCP — second MCP example */}
       <div className="rounded-xl border border-accent/30 bg-accent/[0.03] p-6">
         <div className="flex items-center gap-3 mb-3 flex-wrap">
           <div className="w-9 h-9 rounded-md bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
@@ -113,10 +113,11 @@ export function MCP() {
           <Tag>WRITE</Tag>
         </div>
         <p className="text-sm text-zinc-400 mb-4 max-w-3xl">
-          MCP server cắm vào hệ quản lý task. Agent thay user thao tác{" "}
-          <span className="text-white">trực tiếp trên backlog</span> — tạo issue
-          từ báo cáo test, đổi trạng thái, comment, gán người, link PR — không cần
-          QC mở UI bấm tay.
+          An MCP server that plugs into your task tracker. The agent acts on the
+          user's behalf{" "}
+          <span className="text-white">directly on the backlog</span> — creating
+          issues from a test report, updating status, commenting, assigning,
+          linking PRs — no need for QC to click through a UI.
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-5">
@@ -128,7 +129,7 @@ export function MCP() {
           <ToolChip icon={GitPullRequest} label="link_pr" />
         </div>
 
-        {/* Ví dụ: terminal-style demo */}
+        {/* Example: terminal-style demo */}
         <div className="rounded-lg border border-white/5 bg-bg-base/60 overflow-hidden mb-4">
           <div className="flex items-center gap-2 px-4 py-2 bg-bg-card/60 border-b border-white/5">
             <div className="flex gap-1.5">
@@ -137,41 +138,41 @@ export function MCP() {
               <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
             </div>
             <div className="font-mono text-[11px] text-zinc-500 ml-2">
-              agent + backlog-mcp · ví dụ
+              agent + backlog-mcp · example
             </div>
           </div>
           <pre className="font-mono text-[12px] leading-relaxed p-4 text-zinc-300 whitespace-pre-wrap">
             <Line accent>
-              {"> "}“Sau khi test xong, tạo bug cho từng case fail, gán Mai,
-              link vào PR #482.”
+              {"> "}“Once testing is done, file a bug for each failing case,
+              assign Mai, and link them to PR #482.”
             </Line>
             <Line dim>[mcp:backlog] list_issues project=QC-25 status=open</Line>
-            <Line dim>[mcp:backlog] → 12 issue (filter để tránh trùng)</Line>
+            <Line dim>[mcp:backlog] → 12 issues (filter to avoid duplicates)</Line>
             <Line>
               [mcp:backlog] create_issue type=bug priority=P1 \
-              {"\n          "}title="Login mobile - không hiển thị error" \
+              {"\n          "}title="Mobile login — error message not shown" \
               {"\n          "}assignee=Mai due=2026-05-23
             </Line>
-            <Line ok>✓ tạo BUG-148</Line>
+            <Line ok>✓ created BUG-148</Line>
             <Line>
               [mcp:backlog] create_issue →{" "}
               <span className="text-white">BUG-149</span> "Reset password email
-              không về"
+              never arrives"
             </Line>
             <Line>
               [mcp:backlog] add_comment BUG-148{" "}
-              <span className="text-zinc-500">"đính kèm log + screen + step
-              reproduce"</span>
+              <span className="text-zinc-500">"attached log + screenshot +
+              repro steps"</span>
             </Line>
             <Line>[mcp:backlog] link_pr BUG-148 ↔ PR-482</Line>
-            <Line accent>✓ 3 bug tạo + link xong, post Slack #qc-team</Line>
+            <Line accent>✓ 3 bugs filed + linked, posted to Slack #qc-team</Line>
           </pre>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-          <Compare label="Đỡ mở UI" detail="thao tác bằng câu lệnh" />
+          <Compare label="No UI clicks" detail="drive everything by command" />
           <Compare label="Auto-link" detail="task ↔ PR ↔ commit" />
-          <Compare label="Bulk" detail="20 bug trong 1 lượt" />
+          <Compare label="Bulk" detail="20 bugs in one go" />
         </div>
       </div>
     </div>

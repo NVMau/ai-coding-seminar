@@ -23,25 +23,25 @@ const steps = [
   {
     icon: UserCheck,
     label: "Verify welcome",
-    detail: "Assert greeting chứa display name `QC User`",
+    detail: "Assert greeting contains display name `QC User`",
     tool: "assert",
   },
   {
     icon: PlusCircle,
     label: "Create task",
-    detail: "Mở modal → Save → assert toast == `Task created`",
+    detail: "Open modal → Save → assert toast == `Task created`",
     tool: "playwright",
   },
   {
     icon: Trash2,
     label: "Cancel delete",
-    detail: "Đếm row trước · click Huỷ · đếm lại — không đổi",
+    detail: "Count rows · click Cancel · recount — unchanged",
     tool: "playwright",
   },
   {
     icon: Filter,
     label: "Filter High",
-    detail: "Tick checkbox → mọi row priority == `High`",
+    detail: "Tick checkbox → every visible row priority == `High`",
     tool: "playwright",
   },
 ];
@@ -49,23 +49,23 @@ const steps = [
 const bugs = [
   {
     id: "BUG-1",
-    title: "Greeting dùng email thay vì display name",
+    title: "Greeting shows email instead of display name",
     where: "Dashboard header",
   },
   {
     id: "BUG-2",
-    title: "Toast sau Create ghi `Task updated`",
-    where: "Modal create",
+    title: "Toast after Create reads `Task updated`",
+    where: "Create modal",
   },
   {
     id: "BUG-3",
-    title: "Nút `Huỷ` trên confirm vẫn xoá task",
-    where: "Dialog xoá",
+    title: "`Cancel` on confirm dialog still deletes the task",
+    where: "Delete dialog",
   },
   {
     id: "BUG-4",
-    title: "Filter `Only High` không filter",
-    where: "Bộ lọc list",
+    title: "Filter `Only High` does not filter",
+    where: "List filter bar",
   },
 ];
 
@@ -74,8 +74,8 @@ export function Demo() {
     <div>
       <SectionTitle
         eyebrow="// live demo"
-        title="Flow: Skill + Playwright MCP test app QC Tasks"
-        desc="Agent chạy 1 skill — bắt 4 bug đã cài chủ động trong demo app. Mỗi bug đại diện 1 lỗi phổ biến QA hay gặp."
+        title="Flow: Skill + Playwright MCP testing the QC Tasks app"
+        desc="The agent runs one skill — catching 4 bugs planted in the demo app. Each bug represents a common defect QC teams hit in the wild."
       />
 
       {/* Demo app callout */}
@@ -89,7 +89,7 @@ export function Demo() {
               demo app
             </div>
             <div className="text-white font-semibold text-base">
-              QC Tasks · 4 bug cài sẵn để agent bắt
+              QC Tasks · 4 bugs planted for the agent to catch
             </div>
             <div className="text-xs text-zinc-400 mt-1">
               login{" "}
@@ -100,7 +100,7 @@ export function Demo() {
               <code className="font-mono text-[11px] bg-bg-base/60 border border-white/10 rounded px-1.5 py-0.5">
                 qc123
               </code>{" "}
-              · reset state: thêm{" "}
+              · reset state: append{" "}
               <code className="font-mono text-[11px] bg-bg-base/60 border border-white/10 rounded px-1.5 py-0.5">
                 #reset
               </code>
@@ -113,7 +113,7 @@ export function Demo() {
           rel="noreferrer"
           className="inline-flex items-center gap-2 rounded-md bg-accent text-bg-base font-semibold text-sm px-4 py-2 hover:bg-accent-soft transition"
         >
-          Mở demo app
+          Open demo app
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
       </div>
@@ -167,18 +167,18 @@ export function Demo() {
             <Line>click [data-testid=login-submit]</Line>
             <Line ok>✓ wait_for dashboard</Line>
             <Line fail>
-              ✗ welcome KHÔNG chứa "QC User" — actual: "qc@example.com"
+              ✗ welcome does NOT contain "QC User" — actual: "qc@example.com"
             </Line>
             <Line>click new-task · type "Smoke test" · save</Line>
             <Line fail>
               ✗ toast == "Task created" — actual: "Task updated"
             </Line>
             <Line>count_rows = 4 · click delete · click cancel</Line>
-            <Line fail>✗ rows giảm còn 3 sau khi Cancel</Line>
+            <Line fail>✗ rows dropped to 3 after Cancel</Line>
             <Line>tick [data-testid=filter-high]</Line>
-            <Line fail>✗ filter "High" — actual: visible 3 (Med/Low/Med)</Line>
+            <Line fail>✗ filter "High" — actual: 3 visible (Med/Low/Med)</Line>
             <Line accent>
-              ✗ 4 BUG phát hiện — sẵn sàng push qua Backlog MCP
+              ✗ 4 BUGs found — ready to push via Backlog MCP
             </Line>
           </pre>
         </div>
@@ -186,7 +186,7 @@ export function Demo() {
         <div className="lg:col-span-2 rounded-xl border border-white/5 bg-bg-card/60 p-5">
           <div className="font-mono text-[10px] uppercase tracking-widest text-accent mb-3 flex items-center gap-2">
             <Bug className="w-3.5 h-3.5" />
-            Bug agent đã bắt
+            Bugs the agent caught
           </div>
           <ol className="space-y-2">
             {bugs.map((b) => (
@@ -213,23 +213,24 @@ export function Demo() {
 
       {/* Why */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6">
-        <Bullet icon={Zap} title="Tốc độ">
-          Vài phút thay vì QA ngồi bấm tay cả buổi.
+        <Bullet icon={Zap} title="Speed">
+          A few minutes instead of QA clicking through for hours.
         </Bullet>
-        <Bullet icon={RefreshCw} title="UI đổi → sửa skill">
-          Không phải viết lại script test cứng.
+        <Bullet icon={RefreshCw} title="UI changes → patch the skill">
+          No need to rewrite brittle test scripts every time.
         </Bullet>
-        <Bullet icon={Clock} title="Lặp đều, không quên">
-          Mỗi build chạy lại 1 skill — không phụ thuộc QA nhớ check gì.
+        <Bullet icon={Clock} title="Steady repetition">
+          Every build re-runs the same skill — nothing depends on QA remembering what to check.
         </Bullet>
       </div>
 
       <div className="mt-5 rounded-lg border border-white/5 bg-bg-card/40 p-3 flex items-center gap-3 text-xs text-zinc-400">
         <Terminal className="w-4 h-4 text-accent shrink-0" />
         <span>
-          Sau bước này agent kết hợp{" "}
-          <span className="text-white">Backlog MCP</span> ở slide trước để tự
-          tạo 4 ticket bug — khép vòng từ "test" → "báo cáo".
+          Right after this step the agent pairs with{" "}
+          <span className="text-white">Backlog MCP</span> from the previous slide
+          to file the 4 bug tickets automatically — closing the loop from "test"
+          to "report".
         </span>
       </div>
     </div>

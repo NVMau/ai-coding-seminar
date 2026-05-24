@@ -28,17 +28,17 @@ export function Outro() {
         <RecapCard
           icon={Bot}
           title="Agent"
-          desc="LLM + tool + context window. Hiểu giới hạn để dùng hiệu quả."
+          desc="LLM + tool + context window. Know its limits to use it well."
         />
         <RecapCard
           icon={Wrench}
           title="Skill"
-          desc="Đóng gói kinh nghiệm team thành checklist agent đọc được."
+          desc="Team know-how packaged into a checklist the agent can read."
         />
         <RecapCard
           icon={Plug}
           title="MCP"
-          desc="Chuẩn chung để agent cắm vào hệ thống — Playwright MCP cho browser."
+          desc="A shared standard for plugging agents into systems — e.g. Playwright MCP for browsers."
         />
       </div>
 
@@ -47,23 +47,23 @@ export function Outro() {
         <div className="rounded-xl border border-accent/20 bg-accent/5 p-5">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle2 className="w-4 h-4 text-accent" />
-            <h3 className="text-white font-semibold">Khi nên dùng</h3>
+            <h3 className="text-white font-semibold">When it shines</h3>
           </div>
           <ul className="space-y-2 text-sm text-zinc-300">
-            <Li icon={Repeat2}>Test manual lặp đi lặp lại nhiều lần</Li>
-            <Li icon={UserPlus}>Onboard QC mới (skill = tài liệu sống)</Li>
-            <Li icon={ListChecks}>Việc tedious cần đúng convention team</Li>
+            <Li icon={Repeat2}>Manual testing you repeat over and over</Li>
+            <Li icon={UserPlus}>Onboarding new QC (skills = living docs)</Li>
+            <Li icon={ListChecks}>Tedious work that must follow team conventions</Li>
           </ul>
         </div>
         <div className="rounded-xl border border-white/10 bg-bg-card/60 p-5">
           <div className="flex items-center gap-2 mb-3">
             <XCircle className="w-4 h-4 text-zinc-400" />
-            <h3 className="text-white font-semibold">Khi KHÔNG thay thế</h3>
+            <h3 className="text-white font-semibold">When NOT to fully replace humans</h3>
           </div>
           <ul className="space-y-2 text-sm text-zinc-400">
-            <Li icon={ShieldAlert} muted>Logic critical cần review kỹ</Li>
+            <Li icon={ShieldAlert} muted>Critical logic that needs careful review</Li>
             <Li icon={Lock} muted>Security · Payment · Auth</Li>
-            <Li icon={Crosshair} muted>Yêu cầu độ chính xác tuyệt đối</Li>
+            <Li icon={Crosshair} muted>Anything demanding absolute precision</Li>
           </ul>
         </div>
       </div>
@@ -76,13 +76,13 @@ export function Outro() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-zinc-300">
           <Action n="01" icon={PenLine}>
-            Viết 1 skill cho task QC hay lặp nhất tuần này.
+            This week, write a skill for the QC task you repeat the most.
           </Action>
           <Action n="02" icon={Download}>
-            Cài thử Playwright MCP cho project đang test.
+            Try wiring up Playwright MCP for the project you're testing now.
           </Action>
           <Action n="03" icon={Share2}>
-            Share skill hữu ích cho team dùng chung.
+            Share useful skills so the whole team can reuse them.
           </Action>
         </div>
       </div>
@@ -93,9 +93,9 @@ export function Outro() {
           <MessageCircle className="w-7 h-7" />
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-          Cảm ơn mọi người đã lắng nghe!
+          Thanks for listening!
         </h2>
-        <p className="text-zinc-400 mb-5">Q&A — bao nhiêu câu hỏi cũng được.</p>
+        <p className="text-zinc-400 mb-5">Q&amp;A — fire away, no question too small.</p>
         <div className="flex items-center justify-center gap-2 flex-wrap mb-8">
           <Tag>#AIQCTeam</Tag>
           <Tag>#Agent</Tag>

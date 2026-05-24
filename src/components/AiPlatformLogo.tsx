@@ -5,15 +5,16 @@ interface Props {
 }
 
 /**
- * "AI Platform TEAM" logo — vẽ lại từ logo gốc do team cung cấp.
- * Khung chữ nhật bao quanh "AI Platform"; chữ "TEAM" cắt qua viền dưới.
+ * "AI Platform TEAM" logo — redrawn from the original team artwork.
+ * A rectangular frame wraps the "AI Platform" text; the "TEAM" word cuts
+ * through the bottom edge.
  *
- * tone="accent" → viền cam, chữ trắng (default cho dark theme)
- * tone="white"  → toàn bộ trắng, dùng khi cần neutral
+ * tone="accent" → orange frame, white text (default for the dark theme)
+ * tone="white"  → fully white, for neutral placements
  *
  * Sizes:
  *  sm  → 96 × 36   (top nav)
- *  md  → 180 × 68  (badge ở hero / outro)
+ *  md  → 180 × 68  (hero / outro badge)
  *  lg  → 280 × 105 (full hero)
  */
 export function AiPlatformLogo({
@@ -79,7 +80,7 @@ export function AiPlatformLogo({
         AI Platform
       </text>
 
-      {/* "TEAM" — cắt qua viền dưới */}
+      {/* "TEAM" — cuts through the bottom edge */}
       <text
         x="120"
         y="82"

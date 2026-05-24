@@ -22,28 +22,28 @@ export function Agent() {
   return (
     <div>
       <SectionTitle
-        eyebrow="// nền tảng — nói lướt"
-        title="Agent = bộ não + tay chân + trí nhớ ngắn hạn"
-        desc="Hiểu sơ bộ Agent hoạt động ra sao, đủ để theo các phần sau (Skill, MCP)."
+        eyebrow="// foundation — quick overview"
+        title="Agent = brain + hands + short-term memory"
+        desc="A high-level view of how an Agent works — just enough to follow the next sections (Skill, MCP)."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
         <Card
           icon={Brain}
-          title="Agent là gì?"
-          description="LLM + khả năng dùng tool + vòng lặp reasoning. Khác chatbot thường: tự quyết bước tiếp, gọi tool, quan sát kết quả, rồi quyết bước kế."
+          title="What is an Agent?"
+          description="LLM + tool use + a reasoning loop. Unlike a plain chatbot, it decides the next step itself, calls a tool, observes the result, then decides again."
           badge="LLM"
         />
         <Card
           icon={MemoryStick}
           title="Context Window"
-          description="Bộ nhớ ngắn hạn — toàn bộ chat + tool output nằm trong cửa sổ này. Đầy thì bị 'quên' hoặc bị summarize. Chia task nhỏ, mở session mới khi cần."
+          description="Short-term memory — all chat + tool output lives in this window. When it fills up, things get summarized or dropped. Split tasks small, open fresh sessions when you can."
           badge="MEMORY"
         />
         <Card
           icon={Wrench}
           title="Tool"
-          description="Cánh tay của agent: read file, run shell, query DB, browser… LLM không tự làm được gì — mọi action ra ngoài đều qua tool."
+          description="The agent's hands: read file, run shell, query DB, browser… The LLM by itself can only generate text — tools are how it touches the real world."
           badge="ACTION"
         />
       </div>
@@ -54,10 +54,10 @@ export function Agent() {
       <div className="rounded-xl border border-white/5 bg-bg-card/60 p-6 mb-6">
         <div className="font-mono text-[10px] uppercase tracking-widest text-accent mb-1 flex items-center gap-2">
           <Eye className="w-3.5 h-3.5" />
-          So sánh trực quan
+          Side-by-side
         </div>
         <h3 className="text-lg font-semibold text-white mb-5">
-          Chatbot thường vs. Agent
+          Plain chatbot vs. Agent
         </h3>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -69,7 +69,7 @@ export function Agent() {
                 Chatbot
               </span>
               <span className="ml-auto text-[10px] font-mono uppercase tracking-widest text-zinc-500 border border-white/5 px-1.5 py-0.5 rounded">
-                1 lượt
+                1 turn
               </span>
             </div>
 
@@ -83,8 +83,8 @@ export function Agent() {
             </div>
 
             <div className="text-xs text-zinc-400 leading-relaxed">
-              Hỏi → đáp. LLM trả về text. Không gọi tool, không loop. Mọi việc
-              ngoài text đều phải người dùng tự làm.
+              Ask → answer. The LLM returns text. No tool calls, no loop.
+              Anything beyond text, the user has to do themselves.
             </div>
           </div>
 
@@ -96,7 +96,7 @@ export function Agent() {
                 Agent
               </span>
               <span className="ml-auto text-[10px] font-mono uppercase tracking-widest text-accent border border-accent/30 px-1.5 py-0.5 rounded">
-                lặp N lượt
+                loops N turns
               </span>
             </div>
 
@@ -142,8 +142,8 @@ export function Agent() {
             </div>
 
             <div className="text-xs text-zinc-300 leading-relaxed mt-6">
-              Nhận mục tiêu → tự gọi tool → quan sát → quyết bước tiếp → lặp
-              tới khi xong. Người dùng chỉ giao việc, agent tự đi.
+              Receive a goal → call a tool → observe → decide the next step →
+              loop until done. The user just hands off the task; the agent drives.
             </div>
           </div>
         </div>
@@ -156,10 +156,10 @@ export function Agent() {
         <div className="lg:col-span-2 rounded-xl border border-white/5 bg-bg-card/60 p-6">
           <div className="font-mono text-[10px] uppercase tracking-widest text-accent mb-1 flex items-center gap-2">
             <MemoryStick className="w-3.5 h-3.5" />
-            Context Window — bộ nhớ ngắn hạn
+            Context Window — short-term memory
           </div>
           <h3 className="text-lg font-semibold text-white mb-4">
-            Mọi thứ agent "biết" trong session đều nằm ở đây
+            Everything the agent "knows" this session lives here
           </h3>
 
           {/* Window bar */}
@@ -191,7 +191,7 @@ export function Agent() {
             <LegendDot color="bg-blue-500/60" label="User message" />
             <LegendDot color="bg-accent/60" label="LLM reasoning" />
             <LegendDot color="bg-emerald-500/50" label="Tool result" />
-            <LegendDot color="bg-white/10 border border-white/10" label="Còn trống" />
+            <LegendDot color="bg-white/10 border border-white/10" label="Free space" />
           </div>
         </div>
 
@@ -200,23 +200,23 @@ export function Agent() {
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="w-4 h-4 text-accent" />
             <span className="font-mono text-[11px] uppercase tracking-widest text-accent">
-              Khi context đầy
+              When the context fills up
             </span>
           </div>
           <ul className="space-y-2.5 text-xs text-zinc-300">
             <FactDot>
-              Tin nhắn cũ bị <em className="text-white">summarize</em> hoặc bị
-              cắt khỏi context.
+              Old messages get <em className="text-white">summarized</em> or
+              dropped from context.
             </FactDot>
             <FactDot>
-              Agent "quên" chi tiết ở đầu session → ra quyết định lệch.
+              The agent "forgets" early details → decisions start to drift.
             </FactDot>
             <FactDot>
-              Càng dài → càng tốn token & càng chậm.
+              Longer context → more tokens, slower responses.
             </FactDot>
           </ul>
           <div className="mt-4 pt-3 border-t border-white/5 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-            tip: chia task nhỏ — mở session mới khi không cần state cũ.
+            tip: split tasks small — start a new session when old state isn't needed.
           </div>
         </div>
       </div>
@@ -227,10 +227,10 @@ export function Agent() {
       <div className="rounded-xl border border-white/5 bg-bg-card/60 p-6 mb-6">
         <div className="font-mono text-[10px] uppercase tracking-widest text-accent mb-1 flex items-center gap-2">
           <Wrench className="w-3.5 h-3.5" />
-          Tool — Agent dùng được gì?
+          Tool — what can the Agent actually use?
         </div>
         <h3 className="text-lg font-semibold text-white mb-4">
-          Mỗi tool = một "động từ" agent có thể thực hiện
+          Each tool = one "verb" the agent can perform
         </h3>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -243,9 +243,9 @@ export function Agent() {
         </div>
 
         <div className="mt-4 pt-4 border-t border-white/5 font-mono text-[11px] text-zinc-400">
-          <span className="text-accent">$</span> LLM tự nó chỉ biết sinh text.{" "}
-          <span className="text-white">Tool</span> là cách duy nhất nó tác động
-          ra hệ thống thật.
+          <span className="text-accent">$</span> By itself an LLM only generates text.{" "}
+          <span className="text-white">Tools</span> are the only way it touches the
+          real system.
         </div>
       </div>
 
@@ -255,22 +255,22 @@ export function Agent() {
       <div className="rounded-xl border border-white/5 bg-bg-card/60 p-6">
         <div className="font-mono text-[10px] uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
           <RotateCw className="w-3.5 h-3.5" />
-          Vòng lặp Agentic
+          The Agentic Loop
         </div>
         <div className="flex items-center justify-between gap-2 flex-wrap">
-          <LoopStep n="01" label="Reason" desc="Suy nghĩ bước tiếp theo" />
+          <LoopStep n="01" label="Reason" desc="Think through the next step" />
           <Arrow />
-          <LoopStep n="02" label="Call tool" desc="Gọi action ra ngoài" />
+          <LoopStep n="02" label="Call tool" desc="Take action in the real world" />
           <Arrow />
-          <LoopStep n="03" label="Observe" desc="Quan sát kết quả" />
+          <LoopStep n="03" label="Observe" desc="Read the result" />
           <Arrow />
-          <LoopStep n="04" label="Repeat" desc="Đến khi đạt mục tiêu" />
+          <LoopStep n="04" label="Repeat" desc="Until the goal is met" />
         </div>
 
         <div className="mt-6 pt-5 border-t border-white/5 font-mono text-xs text-zinc-400">
-          <span className="text-accent">$</span> "Agent = bộ não{" "}
-          <span className="text-white">(LLM)</span> + tay chân{" "}
-          <span className="text-white">(tools)</span> + trí nhớ ngắn hạn{" "}
+          <span className="text-accent">$</span> "Agent = brain{" "}
+          <span className="text-white">(LLM)</span> + hands{" "}
+          <span className="text-white">(tools)</span> + short-term memory{" "}
           <span className="text-white">(context window)</span>"
         </div>
       </div>

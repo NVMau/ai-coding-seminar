@@ -81,7 +81,7 @@
       errEl.hidden = true;
 
       if (!email || !password) {
-        errEl.textContent = "Email và mật khẩu không được để trống.";
+        errEl.textContent = "Email and password are required.";
         errEl.hidden = false;
         return;
       }
@@ -96,7 +96,7 @@
         });
         enterDashboard();
       } else {
-        errEl.textContent = "Sai email hoặc mật khẩu.";
+        errEl.textContent = "Incorrect email or password.";
         errEl.hidden = false;
       }
     });
@@ -121,7 +121,7 @@
     // BUG #1 (Welcome bug)
     // Should render `session.displayName` ("QC User") but renders email instead.
     // Agent assertion: greeting contains the display name → fails because email shown.
-    $("#welcome").textContent = "Xin chào, " + session.email;
+    $("#welcome").textContent = "Hello, " + session.email;
 
     state.tasks = loadTasks();
     state.filterHigh = false;
@@ -155,8 +155,8 @@
           <span class="status" data-testid="task-row-status">${t.status}</span>
         </td>
         <td class="col-actions">
-          <button class="btn btn-ghost btn-sm" data-action="edit" data-id="${t.id}" data-testid="task-edit">Sửa</button>
-          <button class="btn btn-ghost btn-sm" data-action="delete" data-id="${t.id}" data-testid="task-delete">Xoá</button>
+          <button class="btn btn-ghost btn-sm" data-action="edit" data-id="${t.id}" data-testid="task-edit">Edit</button>
+          <button class="btn btn-ghost btn-sm" data-action="delete" data-id="${t.id}" data-testid="task-delete">Delete</button>
         </td>
       `;
       tbody.appendChild(tr);
@@ -210,7 +210,7 @@
    *  TASK MODAL (create / edit)
    * ============================================================ */
   function openTaskModal(task) {
-    $("#task-modal-title").textContent = task ? "Sửa task" : "Tạo task";
+    $("#task-modal-title").textContent = task ? "Edit task" : "New task";
     $("#task-id").value = task ? String(task.id) : "";
     $("#task-title").value = task ? task.title : "";
     $("#task-priority").value = task ? task.priority : "Medium";
@@ -239,7 +239,7 @@
       errEl.hidden = true;
 
       if (!title) {
-        errEl.textContent = "Title không được để trống.";
+        errEl.textContent = "Title is required.";
         errEl.hidden = false;
         return;
       }
@@ -278,7 +278,7 @@
   function openConfirmDelete(task) {
     state.deleteId = task.id;
     $("#confirm-text").textContent =
-      'Bạn có chắc muốn xoá "' + task.title + '"?';
+      'Are you sure you want to delete "' + task.title + '"?';
     $("#confirm-modal").hidden = false;
   }
   function closeConfirmDelete() {
@@ -288,7 +288,7 @@
   function bindConfirmDelete() {
     $("#confirm-cancel").addEventListener("click", () => {
       // BUG #3 (Cancel-delete bug)
-      // Clicking "Huỷ" on the confirm dialog should ONLY close the dialog.
+      // Clicking "Cancel" on the confirm dialog should ONLY close the dialog.
       // Here it also performs the delete — wrong behaviour.
       // Agent assertion: number of tasks BEFORE == AFTER pressing Cancel → fails.
       if (state.deleteId != null) {

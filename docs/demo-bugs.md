@@ -1,98 +1,98 @@
-# Demo Bugs — Speaker Reference (KHÔNG share cho audience)
+# Demo Bugs — Speaker Reference (DO NOT share with the audience)
 
-App demo: `/demo-app/`  
-Credentials: `qc@example.com` / `qc123`  
-Reset state: thêm `#reset` vào URL (vd `/demo-app/#reset`) — clear localStorage + reload.
+Companion app: `/demo-app/`
+Credentials: `qc@example.com` / `qc123`
+Reset state: append `#reset` to the URL (e.g. `/demo-app/#reset`) — clears `localStorage` and reloads.
 
-Có **4 bug** được cài chủ động trong app. Agent + Playwright MCP nên bắt được hết khi chạy script test demo.
+The app contains **four bugs planted on purpose**. An agent paired with Playwright MCP should catch all of them when it runs the demo skill.
 
 ---
 
 ## BUG #1 — Welcome bug (login → dashboard)
 
-**Vị trí**: `app.js` → `enterDashboard()`  
-**Triệu chứng UI**: Sau khi login thành công, header hiện `"Xin chào, qc@example.com"` thay vì `"Xin chào, QC User"`.
+**Location**: `app.js` → `enterDashboard()`
+**UI symptom**: After a successful login, the header renders `"Hello, qc@example.com"` instead of `"Hello, QC User"`.
 
-**Expected**: Hiển thị `displayName` (`QC User`) lấy từ session/profile.  
-**Actual**: Hiển thị email.
+**Expected**: Show the `displayName` (`QC User`) loaded from the session/profile.
+**Actual**: Shows the email address.
 
-**Cách agent bắt**:
-- Sau khi click `[data-testid="login-submit"]` và đợi dashboard render.
-- Đọc text của `[data-testid="welcome"]`.
-- Assert: text **chứa** `"QC User"`.
-- Kết quả: fail vì text chứa `"qc@example.com"` chứ không có `"QC User"`.
+**How the agent catches it**:
+- After clicking `[data-testid="login-submit"]` and waiting for the dashboard to render.
+- Read the text of `[data-testid="welcome"]`.
+- Assert: text **contains** `"QC User"`.
+- Result: fails because the text contains `"qc@example.com"` and not `"QC User"`.
 
-> Nói với audience: *"Đây là kiểu bug copy data sai. UI test bằng mắt rất dễ bỏ qua nếu QA không biết format đúng — Agent đọc rule từ skill, không bị 'quen mắt'."*
+> Speaker note: *"This is the classic 'wrong data field' bug. Reviewing by eye is easy to miss if QA doesn't know the exact expected format — the agent reads the rule from the skill, so it isn't fooled by something that 'looks fine'."*
 
 ---
 
 ## BUG #2 — Toast wording (create task)
 
-**Vị trí**: `app.js` → `bindTaskModal()` nhánh create  
-**Triệu chứng UI**: Tạo task mới xong, toast hiện `"Task updated"` thay vì `"Task created"`.
+**Location**: `app.js` → `bindTaskModal()`, create branch
+**UI symptom**: After creating a new task, the toast reads `"Task updated"` instead of `"Task created"`.
 
-**Expected**: Toast = `"Task created"` (do action là create).  
-**Actual**: Toast = `"Task updated"` (copy-paste từ nhánh edit).
+**Expected**: Toast = `"Task created"` (the action is a create).
+**Actual**: Toast = `"Task updated"` (copy-paste mistake from the edit branch).
 
-**Cách agent bắt**:
-- Mở modal `[data-testid="new-task"]`.
-- Nhập title, click `[data-testid="task-save"]`.
-- Đợi `[data-testid="toast"]` xuất hiện (≤ 1s).
+**How the agent catches it**:
+- Open the modal via `[data-testid="new-task"]`.
+- Enter a title, click `[data-testid="task-save"]`.
+- Wait for `[data-testid="toast"]` to appear (≤ 1s).
 - Assert: toast text === `"Task created"`.
-- Kết quả: fail vì text === `"Task updated"`.
+- Result: fails because the text is `"Task updated"`.
 
-> Nói với audience: *"Bug copy-paste giữa hai luồng (create vs update). Agent đối chiếu thông điệp với spec, phát hiện ngay — kể cả tin nhắn `"Task updated"` nhìn hợp lý."*
+> Speaker note: *"A classic copy-paste bug between two branches (create vs. update). The agent compares the message against the spec and spots it immediately — even when the wrong message looks completely reasonable."*
 
 ---
 
-## BUG #3 — Cancel button vẫn xoá (confirm dialog)
+## BUG #3 — Cancel still deletes (confirm dialog)
 
-**Vị trí**: `app.js` → `bindConfirmDelete()` nhánh cancel  
-**Triệu chứng UI**: Trong dialog xác nhận xoá, bấm `"Huỷ"` thì task vẫn bị xoá khỏi list (đáng lẽ chỉ đóng dialog).
+**Location**: `app.js` → `bindConfirmDelete()`, cancel branch
+**UI symptom**: In the delete-confirmation dialog, clicking `"Cancel"` still removes the task from the list (it should only close the dialog).
 
-**Expected**: `Huỷ` → đóng dialog, **không** xoá.  
-**Actual**: `Huỷ` → đóng dialog **và** xoá luôn.
+**Expected**: `Cancel` → dialog closes, the task is **not** deleted.
+**Actual**: `Cancel` → dialog closes **and** the task is deleted.
 
-**Cách agent bắt**:
-- Đếm số row trước khi click delete: `count_before = N`.
-- Click `[data-testid="task-delete"]` của 1 row → confirm modal hiện.
+**How the agent catches it**:
+- Count rows before clicking delete: `count_before = N`.
+- Click `[data-testid="task-delete"]` on a row → confirm modal appears.
 - Click `[data-testid="confirm-cancel"]`.
-- Đếm số row sau: `count_after`.
+- Count rows again: `count_after`.
 - Assert: `count_before === count_after`.
-- Kết quả: fail vì `count_after === count_before - 1`.
+- Result: fails because `count_after === count_before - 1`.
 
-> Nói với audience: *"Đây là bug rất nguy hiểm với data — không phải bug 'xấu' mà là bug 'phá'. Manual QA dễ bị skip nếu chỉ test happy path xoá thật. Skill yêu cầu test cả nút Huỷ → bắt được."*
+> Speaker note: *"This is a dangerous data bug — not a 'looks ugly' bug but a 'destroys things' bug. Manual QA often skips it if they only test the happy path. The skill requires testing the Cancel button too, so the agent catches it."*
 
 ---
 
-## BUG #4 — Filter "Only High priority" không filter
+## BUG #4 — "Only High priority" filter does nothing
 
-**Vị trí**: `app.js` → `renderTable()`  
-**Triệu chứng UI**: Tick checkbox `Chỉ hiện priority cao` — list vẫn hiển thị **mọi** task (không filter).
+**Location**: `app.js` → `renderTable()`
+**UI symptom**: Tick the `Only show high priority` checkbox — the list still renders **every** task (no filtering).
 
-**Expected**: Chỉ hiện row có `priority === "High"`.  
-**Actual**: Vẫn hiện tất cả (lỗi logic `|| true`).
+**Expected**: Only rows with `priority === "High"` are visible.
+**Actual**: All rows still appear (the filter expression contains a stray `|| true`).
 
-**Cách agent bắt**:
+**How the agent catches it**:
 - Tick `[data-testid="filter-high"]`.
-- Đợi list re-render.
-- Đếm row có badge `[data-testid="task-row-priority"]` === `"High"`: `high_count`.
-- Đếm tổng row hiển thị: `visible_count`.
+- Wait for the list to re-render.
+- Count rows with badge `[data-testid="task-row-priority"]` === `"High"`: `high_count`.
+- Count the total visible rows: `visible_count`.
 - Assert: `visible_count === high_count`.
-- Kết quả: fail vì `visible_count > high_count`.
+- Result: fails because `visible_count > high_count`.
 
-> Nói với audience: *"Bug filter là kiểu rất phổ biến trong CRUD app. Agent kết hợp 2 assertion (đếm + so sánh property) — viết script tay thì verbose, viết bằng skill rất gọn."*
+> Speaker note: *"Filter bugs like this are extremely common in CRUD apps. The agent combines two assertions (count + property comparison) — writing this by hand is verbose, but inside a skill it's a couple of lines."*
 
 ---
 
-## Demo flow (15–20 giây / bug, tổng ~2 phút)
+## Demo flow (~15–20s per bug, ~2 minutes total)
 
-1. Reset app: vào `/demo-app/#reset`.
-2. Login với credentials đúng.
-3. Quan sát welcome → **BUG #1**.
-4. Click "Tạo task", nhập title bất kỳ, Save → toast → **BUG #2**.
-5. Click "Xoá" 1 task → modal hiện → Click "Huỷ" → count rows → **BUG #3**.
-6. Tick "Chỉ hiện priority cao" → count rows → **BUG #4**.
-7. Agent in tổng kết: 4 bug + chi tiết.
+1. Reset the app: visit `/demo-app/#reset`.
+2. Sign in with the demo credentials.
+3. Look at the welcome message → **BUG #1**.
+4. Click "New task", enter any title, Save → check the toast → **BUG #2**.
+5. Click "Delete" on a task → modal opens → click "Cancel" → count rows → **BUG #3**.
+6. Tick "Only show high priority" → count rows → **BUG #4**.
+7. The agent prints a summary: 4 bugs + details.
 
-Khi bug-list xuất ra dưới dạng Markdown report, có thể paste thẳng vào ticket — chuyển tiếp slide 4 (Backlog MCP) để nói: *"Bước tiếp theo, agent dùng Backlog MCP tự push 4 bug này lên Jira."*
+When the bug list is emitted as a Markdown report, you can paste it straight into a ticket — segue into slide 4 (Backlog MCP) with: *"Next, the agent pushes these four bugs to Jira via Backlog MCP."*
