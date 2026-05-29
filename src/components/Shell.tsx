@@ -20,7 +20,7 @@ export function Shell({ current, onChange, children }: ShellProps) {
         if (current < total - 1) onChange(current + 1);
       } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
         if (current > 0) onChange(current - 1);
-      } else if (/^[1-8]$/.test(e.key)) {
+      } else if (/^[1-2]$/.test(e.key)) {
         const idx = parseInt(e.key, 10) - 1;
         if (idx < total) onChange(idx);
       }

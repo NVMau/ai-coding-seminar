@@ -1,24 +1,12 @@
 import { useEffect, useState } from "react";
 import { Shell } from "./components/Shell";
-import { Intro } from "./sections/Intro";
 import { WhatIsAgent } from "./sections/WhatIsAgent";
-import { HowAgentsThink } from "./sections/HowAgentsThink";
-import { Architecture } from "./sections/Architecture";
-import { Tools } from "./sections/Tools";
-import { RealWorld } from "./sections/RealWorld";
-import { BestPractices } from "./sections/BestPractices";
-import { Outro } from "./sections/Outro";
+import { HowItWorks } from "./sections/HowItWorks";
 import { SLIDES } from "./slides";
 
 const SECTIONS = [
-  <Intro />,
   <WhatIsAgent />,
-  <HowAgentsThink />,
-  <Architecture />,
-  <Tools />,
-  <RealWorld />,
-  <BestPractices />,
-  <Outro />,
+  <HowItWorks />,
 ];
 
 function App() {
