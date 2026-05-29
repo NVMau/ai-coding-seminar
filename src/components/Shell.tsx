@@ -20,7 +20,7 @@ export function Shell({ current, onChange, children }: ShellProps) {
         if (current < total - 1) onChange(current + 1);
       } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
         if (current > 0) onChange(current - 1);
-      } else if (/^[1-6]$/.test(e.key)) {
+      } else if (/^[1-8]$/.test(e.key)) {
         const idx = parseInt(e.key, 10) - 1;
         if (idx < total) onChange(idx);
       }
@@ -38,7 +38,7 @@ export function Shell({ current, onChange, children }: ShellProps) {
             <AiPlatformLogo size="sm" />
             <div className="flex flex-col font-mono">
               <span className="text-accent text-[11px] font-bold tracking-widest">
-                AI-QC SEMINAR
+                AI AGENT SEMINAR
               </span>
               <span className="text-[10px] text-zinc-500 uppercase tracking-widest">
                 slide {String(current + 1).padStart(2, "0")} /{" "}
@@ -145,8 +145,8 @@ export function Shell({ current, onChange, children }: ShellProps) {
             </span>
           </div>
           <div>
-            ai_qc_seminar_2025{" "}
-            <span className="text-zinc-700">//</span> QC_OPS
+            ai_agent_seminar_2025{" "}
+            <span className="text-zinc-700">//</span> AGENT_DEEP_DIVE
           </div>
         </div>
       </footer>

@@ -1,11 +1,13 @@
 import {
   Bot,
+  Brain,
+  Layers,
   Wrench,
-  Plug,
-  PlayCircle,
+  Globe,
+  Shield,
   Users,
-  TestTube2,
   Target,
+  Cpu,
 } from "lucide-react";
 import { Tag } from "../components/Card";
 import { AiPlatformLogo } from "../components/AiPlatformLogo";
@@ -15,8 +17,8 @@ export function Intro() {
     <div className="flex flex-col items-center text-center pt-4">
       <div className="mb-6 flex items-center gap-3 flex-wrap justify-center">
         <div className="font-mono text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-accent/30 text-accent bg-accent/5 inline-flex items-center gap-2">
-          <TestTube2 className="w-3 h-3" />
-          AI QC SEMINAR DECK
+          <Cpu className="w-3 h-3" />
+          AI AGENT DEEP DIVE
         </div>
         <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
           presented by
@@ -25,48 +27,46 @@ export function Intro() {
       </div>
 
       <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
-        <span className="text-white">Applying AI</span>{" "}
-        <span className="text-accent text-shadow-glow">for the QC Team</span>
+        <span className="text-white">Hiểu về</span>{" "}
+        <span className="text-accent text-shadow-glow">AI Agent</span>
       </h2>
 
       <p className="max-w-2xl text-zinc-400 text-lg leading-relaxed mb-6">
-        A walkthrough of{" "}
-        <span className="text-white font-semibold">Agent</span>,{" "}
-        <span className="text-white font-semibold">Skill</span>,{" "}
-        <span className="text-white font-semibold">MCP</span> — plus a live demo
-        using Skill + Playwright MCP for{" "}
-        <span className="text-accent">manual testing</span>.
+        Từ khái niệm cơ bản đến kiến trúc nâng cao — hiểu cách{" "}
+        <span className="text-white font-semibold">Agent</span> hoạt động,{" "}
+        <span className="text-white font-semibold">suy nghĩ</span>, sử dụng{" "}
+        <span className="text-white font-semibold">công cụ</span>, và{" "}
+        <span className="text-accent">ứng dụng trong thực tế</span>.
       </p>
 
       <div className="flex items-center gap-2 flex-wrap justify-center mb-10">
         <Tag>Agent</Tag>
-        <Tag>Skill</Tag>
-        <Tag>MCP</Tag>
-        <Tag>Playwright</Tag>
-        <Tag>Dev Tools</Tag>
+        <Tag>LLM</Tag>
+        <Tag>ReAct</Tag>
+        <Tag>Tools</Tag>
+        <Tag>Architecture</Tag>
+        <Tag>Patterns</Tag>
       </div>
 
       <div className="font-mono text-xs text-zinc-500 mb-8 inline-flex items-center gap-2">
-        <span className="cursor-blink">~/seminar/start</span>
+        <span className="cursor-blink">~/agent-seminar/start</span>
       </div>
 
       {/* Quick info row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-3xl">
-        <InfoBlock icon={Users} label="Audience" value="QC Team" />
-        <InfoBlock icon={Target} label="Focus" value="Manual testing" />
-        <InfoBlock icon={PlayCircle} label="Live demo" value="Playwright MCP" />
+        <InfoBlock icon={Users} label="Đối tượng" value="Dev & AI Engineers" />
+        <InfoBlock icon={Target} label="Chủ đề" value="AI Agent Deep Dive" />
+        <InfoBlock icon={Bot} label="Focus" value="Agent Architecture" />
       </div>
 
       {/* Section preview row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full max-w-4xl mt-10">
-        <PreviewCard icon={Bot} title="Agent" subtitle="LLM + Tool + Context" />
-        <PreviewCard icon={Wrench} title="Skill" subtitle="Playbook for the agent" />
-        <PreviewCard icon={Plug} title="MCP" subtitle="USB-C for AI agents" />
-        <PreviewCard
-          icon={PlayCircle}
-          title="Demo Flow"
-          subtitle="Manual testing with AI"
-        />
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 w-full max-w-5xl mt-10">
+        <PreviewCard icon={Bot} title="Agent là gì?" subtitle="Định nghĩa cốt lõi" />
+        <PreviewCard icon={Brain} title="Suy nghĩ" subtitle="ReAct & Reasoning" />
+        <PreviewCard icon={Layers} title="Kiến trúc" subtitle="Patterns & Design" />
+        <PreviewCard icon={Wrench} title="Công cụ" subtitle="Tools & Actions" />
+        <PreviewCard icon={Globe} title="Thực tế" subtitle="Ví dụ thực tế" />
+        <PreviewCard icon={Shield} title="Best Practices" subtitle="Làm việc hiệu quả" />
       </div>
     </div>
   );
