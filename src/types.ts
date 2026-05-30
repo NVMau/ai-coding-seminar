@@ -1,12 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 
 export type SlideId =
-  | "intro"
-  | "agent"
-  | "skill"
-  | "mcp"
-  | "demo"
-  | "outro";
+  | "what-is-agent"
+  | "how-it-works";
 
 export interface SlideMeta {
   id: SlideId;

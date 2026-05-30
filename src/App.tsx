@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
 import { Shell } from "./components/Shell";
-import { Intro } from "./sections/Intro";
-import { Agent } from "./sections/Agent";
-import { Skill } from "./sections/Skill";
-import { MCP } from "./sections/MCP";
-import { Demo } from "./sections/Demo";
-import { Outro } from "./sections/Outro";
+import { WhatIsAgent } from "./sections/WhatIsAgent";
+import { HowItWorks } from "./sections/HowItWorks";
 import { SLIDES } from "./slides";
 
 const SECTIONS = [
-  <Intro />,
-  <Agent />,
-  <Skill />,
-  <MCP />,
-  <Demo />,
-  <Outro />,
+  <WhatIsAgent />,
+  <HowItWorks />,
 ];
 
 function App() {
